@@ -3,35 +3,42 @@ package com.example.qlktx.models.DAO;
 import com.example.qlktx.models.BEAN.Room;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomDAO {
 
-    public List<Room> getRooms() {
-        String driverName = "sun.jdbc.odbc.JdbcOdbcDriver";
-        try {
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:odbc:qlktx";
-            String username="root";
-            String password="";
+    public static List<Room> getRooms() {
 
-            Connection con = DriverManager.getConnection(url , username,password) ;
+        try {
+            String url = "jdbc:mysql://localhost:3306/ktx";
+            String username = "root";
+            String password = "";
+
+            Connection con = DriverManager.getConnection(url, username, password);
 
             Statement stmt = con.createStatement();
 
-            ResultSet rs ;
+            String sql = "select * from room";
 
-            String sql = "select * from TABLE_NAME";
+            ResultSet rs = stmt.executeQuery(sql);
 
-        } catch (InstantiationException e) {
+            List<Room> rooms = new ArrayList<>();
+
+            while (rs.next()) {
+                // ... get column values from this record
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int building_id = rs.getInt("building_id");
+                int quantity = rs.getInt("quantity");
+                rooms.add(new Room(id, building_id, name, quantity));
+            }
+
+
+            return rooms;
+        }catch (SQLException e) {
             throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    }
 
     }
 

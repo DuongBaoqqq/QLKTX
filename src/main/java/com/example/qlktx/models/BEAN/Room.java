@@ -6,6 +6,13 @@ public class Room {
     String name ;
     int quantity ;
 
+    public Room(int id , int building_id , String name , int quantity) {
+        this.id = id ;
+        this.building_id = building_id;
+        this.name = name ;
+        this.quantity = quantity;
+    }
+
     public int getId() {
         return id;
     }
