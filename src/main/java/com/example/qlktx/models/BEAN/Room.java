@@ -6,11 +6,25 @@ public class Room {
     String name ;
     int quantity ;
 
-    public Room(int id , int building_id , String name , int quantity) {
+    String buildingName = "";
+
+    int numStudent = 0 ;
+
+    public Room(int id , int building_id , String name , int quantity   ) {
         this.id = id ;
         this.building_id = building_id;
         this.name = name ;
         this.quantity = quantity;
+
+    }
+
+    public Room(int id , int building_id , String name , int quantity , String buildingName , int numStudent   ) {
+        this.id = id ;
+        this.building_id = building_id;
+        this.name = name ;
+        this.quantity = quantity;
+        this.buildingName = buildingName;
+        this.numStudent = numStudent;
     }
 
     public int getId() {
@@ -39,6 +53,22 @@ public class Room {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getBuildingName() {
+        return buildingName;
+    }
+
+    public void setBuildingName(String buildingName) {
+        this.buildingName = buildingName;
+    }
+
+    public int getNumStudent() {
+        return numStudent;
+    }
+
+    public void setNumStudent(int numStudent) {
+        this.numStudent = numStudent;
     }
 
     public void setQuantity(int quantity) {
