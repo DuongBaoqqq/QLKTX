@@ -7,7 +7,11 @@ import java.util.List;
 
 public class RoomBO {
 
-    public static List<Room> getRooms() {
-        return RoomDAO.getRooms();
+    public static List<Room> getRooms(String roomName , boolean isAvailable) {
+        return RoomDAO.getRooms(roomName , isAvailable);
+    }
+
+    public static void addNewRoom(int building_id , String name , int quantity) {
+        RoomDAO.addNewRoom(building_id, name, quantity);
     }
 }
