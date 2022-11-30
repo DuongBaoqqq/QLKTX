@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="handleSearchServlet" method="post">
-    Search <input type="text" name="search"> <input type="submit"><br>
+<form action="staffControllerServlet" method="post">
+    Search <input type="text" name="search"> <input type="submit" name="searchStaff"><br>
     <input type="radio" name="radio" value="id"> Id Staff
     <input type="radio" name="radio" value="name"> Name
     <input type="radio" name="radio" value="role"> Role

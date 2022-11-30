@@ -11,19 +11,24 @@
     <title>Title</title>
 </head>
 <body>
-<form action="handleAddServlet" method="post">
+<form action="staffControllerServlet" method="post">
   <table>
-    <tr>
-      <th>ID</th>
-      <td><input type="text" name="id" ></td>
-    </tr>
+<%--    <tr>--%>
+<%--      <th>ID</th>--%>
+<%--      <td><input type="text" name="id" ></td>--%>
+<%--    </tr>--%>
     <tr>
       <th>Name</th>
       <td><input type="text" name="name" ></td>
     </tr>
     <tr>
       <th>Sex</th>
-      <td><input type="text" name="sex" ></td>
+      <td>
+        <select name="sex">
+          <option value="true">Male</option>
+          <option value="false">Female</option>
+        </select>
+      </td>
     </tr>
     <tr>
       <th>Phone</th>
@@ -38,7 +43,7 @@
       <td><input type="text" name="role" ></td>
     </tr>
   </table>
-  <input type="submit">
+  <input type="submit" name="addStaff">
 </form>
 </body>
 </html>

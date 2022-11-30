@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>UPDATESTAFF</title>
+    <style>
+
+    </style>
 </head>
 <body>
 <form action="handleUpdateServlet" method="post">
@@ -24,7 +27,25 @@
         </tr>
         <tr>
             <th>Sex</th>
-            <td><input type="text" name="sex" value="<%= (staff.isSex()==true?"Male":"Female") %>"></td>
+            <td>
+<%--                <input type="text" name="sex" value="<%= (staff.isSex()==true?"Male":"Female") %>">--%>
+                <select name="sex" id="" >
+                    <option value="true"
+                            <% 
+                                if (staff.isSex()==true){
+                            %>
+                            <%="selected=\"selected\""%>
+                            <%}%>
+                    >Male</option>
+                    <option value="false"
+                            <%
+                                if (staff.isSex()==false){
+                            %>
+                            <%="selected=\"selected\""%>
+                            <%}%>
+                    >Female</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <th>Phone</th>
@@ -39,7 +60,7 @@
             <td><input type="text" name="role" value="<%= staff.getRole() %>"></td>
         </tr>
     </table>
-    <input type="submit">
+    <input type="submit" name="updateStaff">
 </form>
 </body>
 </html>

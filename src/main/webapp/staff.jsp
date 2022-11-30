@@ -9,10 +9,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>STAFF</title>
+  <title>STAFF</title>
+  <style>
+    table{
+      width:100%
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(even) {
+      background-color: #D6EEEE;
+    }
+
+  </style>
 </head>
 <body>
-<form action="addStaffServlet" method="post">
+<form action="changePagesServlet" method="post">
 
   <table>
     <tr>
@@ -36,7 +49,7 @@
         <td><%= Staffs.get(i).getPhonenumber()  %></td>
         <td><%= Staffs.get(i).getDate()  %></td>
         <td><%= Staffs.get(i).getRole()  %></td>
-        <td><a href="updateStaffServlet?id=<%= Staffs.get(i).getId() %>">Update</a></td>
+        <td><a href="changePagesServlet?id=<%= Staffs.get(i).getId() %>">Update</a></td>
         <td><input type="checkbox" name="del" value="<%= Staffs.get(i).getId() %>"></td>
       </tr>
     <%}%>
@@ -44,6 +57,6 @@
   <input type="submit" value="Add Staff" name="submitAdd">
   <input type="submit" value="Delete" name="submitDel">
 </form>
-<a href="searchServlet">Search</a>
+<a href="changePagesServlet?search=1">Search</a>
 </body>
 </html>
