@@ -1,6 +1,7 @@
 package com.example.qlktx.models.DAO;
 
 import com.example.qlktx.models.BEAN.Room;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,8 +10,7 @@ import java.util.stream.Collectors;
 
 public class RoomDAO {
 
-
-    public static Statement createStatement() {
+  public static Statement createStatement() {
         try {
         String url = "jdbc:mysql://localhost:3306/ktx";
         String username = "root";
@@ -37,11 +37,13 @@ public class RoomDAO {
                 sql += "where LOWER(room.name) like " + "LOWER(\'%" +  roomName + "%\')";
             }
 
+
             sql += "group by room.id";
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            List<Room> rooms = new ArrayList<>();
+            String sql = "select * from room";
+
 
             while (rs.next()) {
                 // ... get column values from this record
@@ -61,7 +63,13 @@ public class RoomDAO {
             return rooms;
         }catch (SQLException e) {
             throw new RuntimeException(e);
-    }
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -78,6 +86,14 @@ public class RoomDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+
+    public static  void main(String args[]){
+        RoomDAO rd= new RoomDAO();
+        System.out.println(rd.getRooms().size());
+//        rd.getRooms();
     }
 
 
