@@ -12,7 +12,7 @@
 <head>
     <% List<Student> students = (List<Student>)request.getAttribute("students"); %>
 </head>
-<body>
+<body style="text-align: center">
 <title> DANH SÁCH PHÒNG </title>
 <form action="AddInforStudentServlet">
     <input type="submit" value="Add">
