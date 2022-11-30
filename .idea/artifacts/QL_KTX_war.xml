@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QL_KTX:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>QL_KTX</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="QL_KTX-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="QL_KTX:war exploded" />
+    </root>
+  </artifact>
+</component>
