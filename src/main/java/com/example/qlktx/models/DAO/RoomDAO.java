@@ -12,7 +12,7 @@ public class RoomDAO {
 
   public static Statement createStatement() {
         try {
-        String url = "jdbc:mysql://localhost:3306/ktx";
+        String url = "jdbc:mysql://localhost:3306/ql_ktx";
         String username = "root";
         String password = "";
 
@@ -42,8 +42,7 @@ public class RoomDAO {
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            String sql = "select * from room";
-
+            List<Room> rooms = new ArrayList<>();
 
             while (rs.next()) {
                 // ... get column values from this record
@@ -62,12 +61,6 @@ public class RoomDAO {
 
             return rooms;
         }catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -90,11 +83,6 @@ public class RoomDAO {
 
 
 
-    public static  void main(String args[]){
-        RoomDAO rd= new RoomDAO();
-        System.out.println(rd.getRooms().size());
-//        rd.getRooms();
-    }
 
 
 }
