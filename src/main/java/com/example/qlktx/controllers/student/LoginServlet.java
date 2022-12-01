@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (a != null)
         {
             request.setAttribute("rooms", RoomBO.getRooms("", false));
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/rooms.jsp");
             rd.forward(request, response);
             request.getSession().setAttribute("user", a.getUsername());
         }

@@ -39,7 +39,7 @@ public class changePagesServlet extends HttpServlet {
             for(String id: ids){
                 StaffBO.delStaff(Integer.parseInt(id));
             }
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/rooms.jsp");
             rd.forward(request,response);
         }
     }
