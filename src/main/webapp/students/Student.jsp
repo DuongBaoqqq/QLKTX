@@ -26,7 +26,6 @@
         }
     </style>
 </head>
-
     <body style="text-align: center">
     <title> DANH SÁCH PHÒNG </title>
 
@@ -84,4 +83,5 @@
         <%--    <a> <%=rooms%> </a>--%>
     </table>
     </body>
+
 </html>
