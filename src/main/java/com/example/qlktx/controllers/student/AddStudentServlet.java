@@ -36,7 +36,7 @@ public class AddStudentServlet extends HttpServlet {
         StudentBO.addStudent(id_room, name, date, sex, cccd, phone_number, uni, faculty, _class, date_from, date_to);
 //        request.setAttribute("students", StudentBO.getStudent());
         request.setAttribute("rooms_names", RoomBO.getRooms("", false));
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/AddStudent.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/AddStudent.jsp");
         rd.forward(request, response);
     }
 }

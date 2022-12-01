@@ -70,7 +70,7 @@ public class StudentDAO {
 
             Statement stmt = con.createStatement();
 
-            String sql = "select student.id, room.name, student.name, student.date, student.sex, student.cccd, student.phone_number, student.uni, student.faculty, student.class, student.date_from, student.date_to from student, room where student.room_id = room.id and student.name like '%"+name+"%'";
+            String sql = "select student.id, room.name, student.name, student.date, student.sex, student.cccd, student.phone_number, student.uni, student.faculty, student.class, student.date_from, student.date_to from student, room where student.room_id = room.id and student.name like '%"+name.trim()+"%'";
 
             ResultSet rs = stmt.executeQuery(sql);
 

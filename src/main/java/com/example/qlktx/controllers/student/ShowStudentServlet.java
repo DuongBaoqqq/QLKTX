@@ -19,6 +19,7 @@ public class ShowStudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ShowStudentServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Student.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
         rd.forward(request, response);
 
     }

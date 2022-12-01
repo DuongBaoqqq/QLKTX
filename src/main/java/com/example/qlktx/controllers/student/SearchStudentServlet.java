@@ -25,7 +25,7 @@ public class SearchStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("students", StudentBO.getStudentsByName(request.getParameter("name")));
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Student.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
         rd.forward(request, response);
     }
 }
