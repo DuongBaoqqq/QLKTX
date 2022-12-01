@@ -24,7 +24,7 @@ public class AddRoom extends HttpServlet {
         System.out.println("hello");
         RoomBO.addNewRoom(building_id, name , quantity);
 
-        resp.sendRedirect("/rooms");
+        resp.sendRedirect(req.getContextPath()+"/rooms");
     }
 
 }

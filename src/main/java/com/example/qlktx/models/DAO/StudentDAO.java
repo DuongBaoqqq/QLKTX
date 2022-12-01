@@ -16,7 +16,7 @@ public class StudentDAO {
             Class.forName(driverName).newInstance();
             String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
             String u = "root";
-            String p = "";
+            String p = "080101";
 
             Connection con = DriverManager.getConnection(url, u, p);
 

@@ -14,7 +14,7 @@ public class RoomDAO {
         try {
         String url = "jdbc:mysql://localhost:3306/ql_ktx";
         String username = "root";
-        String password = "";
+        String password = "080101";
 
         Connection con = DriverManager.getConnection(url, username, password);
 

@@ -22,10 +22,10 @@ public class RoomController extends HttpServlet {
         List<Room> rooms = RoomBO.getRooms(roomName , isAvailable);
         req.setAttribute("rooms" , rooms);
         RequestDispatcher rd =
-                req.getRequestDispatcher("/rooms/index.jsp");
+                req.getRequestDispatcher("/rooms/rooms.jsp");
         rd.forward(req , resp);
 
-//        resp.sendRedirect("index.jsp");
+//        resp.sendRedirect("rooms.jsp");
     }
 
     @Override

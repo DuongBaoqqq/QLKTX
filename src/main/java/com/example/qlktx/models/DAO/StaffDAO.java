@@ -25,7 +25,7 @@ public class StaffDAO {
         return list;
     }
     public static void updateStaff(Staff staff) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        String sql = "update staff set name= '" + staff.getName()+"', sex = '" +(staff.isSex()==true?1:0)+
+        String sql = "update staff set name= '" + staff.getName()+"', sex = '" +((staff.isSex())?1:0)+
                 "', sdt= '"+ staff.getPhonenumber() + "', date = '" + staff.getDate() +"', role ='"+staff.getRole()+
                 "' where id =" +staff.getId();
         Statement stmt = ConnectDB.connectionDB();
@@ -50,7 +50,7 @@ public class StaffDAO {
         return list;
     }
     public static void addStaff(Staff staff) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        String sql = "insert into staff (name,sex,sdt,date,role) values ('"+staff.getName()+"',"+(staff.isSex()==true?1:0)+
+        String sql = "insert into staff (name,sex,sdt,date,role) values ('"+staff.getName()+"',"+((staff.isSex())?1:0)+
                 ",'"+staff.getPhonenumber() + "','"+ staff.getDate()+"','"+ staff.getRole()+"')";
         Statement stmt = ConnectDB.connectionDB();
         stmt.executeUpdate(sql);
@@ -64,8 +64,10 @@ public class StaffDAO {
 //    public static void main(String args[]){
 //        try {
 //            StaffDAO std= new StaffDAO();
-//            List<Staff> l =std.searchStaff("name","NV");
-//            System.out.println(l.get(0).getName());
+//            List<Staff> l =std.getAllStaff();
+//            for(Staff staff: l){
+//                System.out.println(staff.isSex());
+//            }
 //        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 //            throw new RuntimeException(e);
 //        }
