@@ -21,7 +21,7 @@ public class ChangeInforStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("rooms_names", RoomBO.getRooms("", false));
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateStudent.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/UpdateStudent.jsp");
         rd.forward(request, response);
     }
 }

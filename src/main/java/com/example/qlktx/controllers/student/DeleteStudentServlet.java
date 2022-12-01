@@ -23,7 +23,7 @@ public class DeleteStudentServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         StudentBO.deleteStudent(id);
         request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Student.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
         rd.forward(request, response);
     }
 }

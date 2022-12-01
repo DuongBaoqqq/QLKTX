@@ -37,7 +37,7 @@ public class UpdateStudentServlet extends HttpServlet {
         String date_to = request.getParameter("date_to");
         StudentBO.updateStudent(id, id_room, name, date, sex, cccd, phone_number, uni, faculty, _class, date_from, date_to);
         request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Student.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
         rd.forward(request, response);
     }
 }
