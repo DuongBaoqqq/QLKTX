@@ -32,4 +32,8 @@ public class StudentBO {
     {
         StudentDAO.deleteStudent(id);
     }
+    public static List<Student> getStudentsByRoom(String room_name)
+    {
+        return StudentDAO.getStudentsByRoom(room_name);
+    }
 }
