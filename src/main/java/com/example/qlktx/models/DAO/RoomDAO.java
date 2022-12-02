@@ -10,25 +10,13 @@ import java.util.stream.Collectors;
 
 public class RoomDAO {
 
-  public static Statement createStatement() {
-        try {
-        String url = "jdbc:mysql://localhost:3306/ql_ktx";
-        String username = "root";
-        String password = "080101";
 
-        Connection con = DriverManager.getConnection(url, username, password);
-
-        return con.createStatement();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static List<Room> getRooms(String roomName , boolean isAvailable) {
 
         try {
             System.out.println(roomName);
-            Statement stmt = createStatement();
+            Statement stmt = ConnectDB.connectionDB();
             String sql = "select room.id , room.name, building_id , quantity , building.name as building_name , count(student.id) as num_student from room " +
                     "inner join building on room.building_id = building.id " +
                     "left join student on student.room_id = room.id ";
@@ -62,6 +50,12 @@ public class RoomDAO {
             return rooms;
         }catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -71,12 +65,18 @@ public class RoomDAO {
             System.out.println(building_id);
             System.out.println(name);
             System.out.println(quantity);
-            Statement statement = createStatement();
+            Statement statement = ConnectDB.connectionDB();
             String sql = "insert into room(building_id , name , quantity)" +
                 " values (" + building_id +",\'" + name + "\'," + quantity + ")" ;
             System.out.println(sql);
             statement.executeUpdate(sql);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }

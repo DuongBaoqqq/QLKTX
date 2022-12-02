@@ -146,6 +146,7 @@
             </tr>
             </thead>
             <tbody>
+
               <%
                       ArrayList<Room> rooms = (ArrayList<Room>)request.getAttribute("rooms");
                       for (Room room: rooms
@@ -158,6 +159,18 @@
               <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
             </tr>
             <% }%>
+
+
+<%--            <tr>--%>
+<%--              <td>01 Jan 2045</td>--%>
+<%--              <td>INV-0123</td>--%>
+<%--              <td>Jhon Doe</td>--%>
+<%--              <td>$123</td>--%>
+<%--              <td>Paid</td>--%>
+<%--              <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>--%>
+<%--            </tr>--%>
+
+
 
             </tbody>
           </table>
