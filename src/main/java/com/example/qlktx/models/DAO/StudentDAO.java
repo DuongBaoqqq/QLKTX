@@ -12,15 +12,10 @@ public class StudentDAO {
     public static List<Student> getStudents()
     {
         try{
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "080101";
 
-            Connection con = DriverManager.getConnection(url, u, p);
 
-            Statement stmt = con.createStatement();
+
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "select student.id, room.name, student.name, student.date, student.sex, student.cccd, student.phone_number, student.uni, student.faculty, student.class, student.date_from, student.date_to from student, room where student.room_id = room.id";
 
@@ -60,15 +55,7 @@ public class StudentDAO {
     public static List<Student> getStudentsByName(String name)
     {
         try{
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "select student.id, room.name, student.name, student.date, student.sex, student.cccd, student.phone_number, student.uni, student.faculty, student.class, student.date_from, student.date_to from student, room where student.room_id = room.id and student.name like '%"+name.trim()+"%'";
 
@@ -108,15 +95,7 @@ public class StudentDAO {
     public static void addStudent(int room_id, String name, String date, int sex, String cccd, String phone_number, String uni, String facuty, String _class, String date_from, String date_to)
     {
         try{
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "insert into student (room_id, name, date, sex, cccd, phone_number, uni, faculty, class, date_from, date_to) values ('"+room_id+"', '"+name.trim()+"', '"+date.trim()+"', '"+sex+"', '"+cccd.trim()+"', '"+phone_number.trim()+"', '"+uni.trim()+"', '"+facuty.trim()+"', '"+_class.trim()+"', '"+date_from.trim()+"', '"+date_to.trim()+"')";
 
@@ -136,15 +115,7 @@ public class StudentDAO {
     public static void updateStudent(int id, int room_id, String name, String date, int sex, String cccd, String phone_number, String uni, String facuty, String _class, String date_from, String date_to)
     {
         try{
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "update student set room_id='"+room_id+"', name='"+name.trim()+"', date='"+date.trim()+"', sex='"+sex+"', cccd='"+cccd.trim()+"', phone_number='"+phone_number.trim()+"', uni='"+uni.trim()+"', faculty='"+facuty.trim()+"', class='"+_class.trim()+"', date_from='"+date_from.trim()+"', date_to='"+date_to.trim()+"' where id='"+id+"'";
 
@@ -164,15 +135,7 @@ public class StudentDAO {
     public static void deleteStudent(int id)
     {
         try{
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "delete from student where id='"+id+"'";
 

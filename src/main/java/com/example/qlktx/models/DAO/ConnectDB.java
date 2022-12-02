@@ -11,11 +11,10 @@ public class ConnectDB {
     static Connection con;
     static Statement stmt;
     public static Statement connectionDB() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        String drivername="com.mysql.cj.jdbc.Driver";
-        forName(drivername).newInstance();
+
         String url="jdbc:mysql://localhost:3306/ql_ktx";
         String username="root";
-        String password="080101";
+        String password="";
         con= DriverManager.getConnection(url,username,password);
         stmt = con.createStatement();
         return stmt;
