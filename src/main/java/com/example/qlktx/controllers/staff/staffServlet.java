@@ -24,7 +24,7 @@ public class staffServlet extends HttpServlet {
         List<Staff> Staffs = new ArrayList<Staff>();
         Staffs = StaffBO.getAllStaff();
         request.setAttribute("staffs",Staffs);
-        String destination = "/staff.jsp";
+        String destination = "/staffs/staff.jsp";
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher(destination);
         rd.forward(request,response);
     }

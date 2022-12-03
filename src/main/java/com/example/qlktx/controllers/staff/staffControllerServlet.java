@@ -14,7 +14,25 @@ import java.util.List;
 public class staffControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        if(request.getParameter("Search")!=null){
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/staffs/searchStaff.jsp");
+            rd.forward(request,response);
+        }
+        else if(request.getParameter("submitAdd")!=null){
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/staffs/addStaff.jsp");
+            rd.forward(request,response);
+        }
+        else
+        if(request.getParameter("id")!=null){
+            int id = Integer.parseInt(request.getParameter("id"));
+            Staff staff = StaffBO.getStaffByID(id);
+            if(staff!= null){
+                request.setAttribute("staff",staff);
+                String destination ="/staffs/updateStaff.jsp";
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher(destination);
+                rd.forward(request,response);
+            }
+        }
     }
 
     @Override
@@ -28,8 +46,6 @@ public class staffControllerServlet extends HttpServlet {
                     request.getParameter("role")
             );
             StaffBO.addStaff(staff);
-//            RequestDispatcher rd = getServletContext().getRequestDispatcher("/rooms.jsp");
-//            rd.forward(request,response);
             response.sendRedirect(request.getContextPath()+"/staffServlet");
         }
         else if (request.getParameter("updateStaff")!=null){
@@ -44,13 +60,24 @@ public class staffControllerServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/staffServlet");
         }
         else if(request.getParameter("searchStaff")!=null){
-            String type = request.getParameter("radio");
-            String search = request.getParameter("search");
+//            String type = request.getParameter("radio");
+            String search = request.getParameter("searchStaff");
             List<Staff> staffs = new ArrayList<>();
-            staffs = StaffBO.SearchStaff(type,search);
+            staffs = StaffBO.SearchStaff("name",search);
             request.setAttribute("staffs",staffs);
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/staffServet");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/staffs/staff.jsp");
             rd.forward(request,response);
+        }
+        else {
+            String[] ids = request.getParameterValues("del");
+            if(ids!=null){
+                for(String id: ids){
+                    StaffBO.delStaff(Integer.parseInt(id));
+                }
+                response.sendRedirect(request.getContextPath()+"/staffServlet");
+            }else {
+                response.sendRedirect(request.getContextPath()+"/staffServlet");
+            }
         }
     }
 }
