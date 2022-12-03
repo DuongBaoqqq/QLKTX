@@ -1,76 +1,11 @@
-<%--<%@ page import="com.example.qlktx.models.BEAN.Staff" %>&lt;%&ndash;--%>
-<%--  Created by IntelliJ IDEA.--%>
-<%--  User: HP--%>
-<%--  Date: 27/11/2022--%>
-<%--  Time: 8:10 CH--%>
-<%--  To change this template use File | Settings | File Templates.--%>
-<%--&ndash;%&gt;--%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java"--%>
-<%--pageEncoding="utf-8"--%>
-<%--%>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>UPDATESTAFF</title>--%>
-<%--    <style>--%>
 
-<%--    </style>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<form action="staffControllerServlet" method="post">--%>
-<%--    <% Staff staff = (Staff) request.getAttribute("staff");  %>--%>
-<%--    <table>--%>
-<%--        <tr>--%>
-<%--            <th>ID</th>--%>
-<%--            <td><input type="text" name="id" value="<%= staff.getId() %>"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <th>Name</th>--%>
-<%--            <td><input type="text" name="name" value="<%= staff.getName() %>"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <th>Sex</th>--%>
-<%--            <td>--%>
-<%--&lt;%&ndash;                <input type="text" name="sex" value="<%= (staff.isSex()==true?"Male":"Female") %>">&ndash;%&gt;--%>
-<%--                <select name="sex" id="" >--%>
-<%--                    <option value="true"--%>
-<%--                            <%--%>
-<%--                                if (staff.isSex()==true){--%>
-<%--                            %>--%>
-<%--                            <%="selected=\"selected\""%>--%>
-<%--                            <%}%>--%>
-<%--                    >Male</option>--%>
-<%--                    <option value="false"--%>
-<%--                            <%--%>
-<%--                                if (staff.isSex()==false){--%>
-<%--                            %>--%>
-<%--                            <%="selected=\"selected\""%>--%>
-<%--                            <%}%>--%>
-<%--                    >Female</option>--%>
-<%--                </select>--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <th>Phone</th>--%>
-<%--            <td><input type="text" name="phonenumber" value="<%= staff.getPhonenumber() %>"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <th>Date</th>--%>
-<%--            <td><input type="date" name="date" value="<%= staff.getDate() %>"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <th>Role</th>--%>
-<%--            <td><input type="text" name="role" value="<%= staff.getRole() %>"></td>--%>
-<%--        </tr>--%>
-<%--    </table>--%>
-<%--    <input type="submit" name="updateStaff">--%>
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
 <%@ page import="com.example.qlktx.models.BEAN.Staff" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!DOCTYPE html>
+
+
 <html lang="en">
 
 <head>
@@ -122,42 +57,42 @@
                 <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>KTX</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
-                <div class="position-relative">
-                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                </div>
                 <div class="ms-3">
-                    <h6 class="mb-0">tieanh</h6>
+                    <h6 class="mb-0"><%=request.getSession().getAttribute("username")%></h6>
                     <span>Admin</span>
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="/" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="/" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Student</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="ShowStudentServlet" class="dropdown-item">List Student</a>
-                        <a href="AddStudentServlet" class="dropdown-item">Add Student</a>
+                        <a href="${pageContext.request.contextPath}/ShowStudentServlet" class="dropdown-item">List Student</a>
+                        <a href="${pageContext.request.contextPath}/AddInforStudentServlet" class="dropdown-item">Add Student</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Room</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="rooms" class="dropdown-item">List room</a>
-                        <a href="rooms/add-room" class="dropdown-item">Add Room</a>
+                        <a href="${pageContext.request.contextPath}/rooms" class="dropdown-item">List room</a>
+                        <a href="${pageContext.request.contextPath}/rooms/add-room" class="dropdown-item">Add Room</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Staff</a>
+                    <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Staff</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="staffServlet" class="dropdown-item">List staff</a>
-                        <a href="staffControllerServlet?submitAdd=1" class="dropdown-item">Add staff</a>
+                        <a href="${pageContext.request.contextPath}/staffServlet" class="dropdown-item">List staff</a>
+                        <a href="${pageContext.request.contextPath}/staffControllerServlet?submitAdd=1" class="dropdown-item">Add staff</a>
                     </div>
                 </div>
 
-                <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
+                <div class="nav-item ">
+                    <a href="${pageContext.request.contextPath}/addAdminServlet" class="nav-link "><i class="fa fa-laptop me-2"></i>Add admin</a>
+                </div>
+
+                <a  href="${pageContext.request.contextPath}/LogoutServlet" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
 
             </div>
         </nav>
@@ -168,7 +103,7 @@
     <!-- Content Start -->
     <div class="content">
         <!-- Navbar Start -->
-        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-3">
             <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                 <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
             </a>
@@ -178,89 +113,14 @@
             <form class="d-none d-md-flex ms-4">
                 <input class="form-control border-0" type="search" placeholder="Search">
             </form>
-            <div class="navbar-nav align-items-center ms-auto">
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-envelope me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Message</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item text-center">See all message</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa fa-bell me-lg-2"></i>
-                        <span class="d-none d-lg-inline-flex">Notificatin</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Profile updated</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">New user added</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Password changed</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item text-center">See all notifications</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                        <span class="d-none d-lg-inline-flex">John Doe</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
-                    </div>
-                </div>
-            </div>
+
         </nav>
         <!-- Navbar End -->
         <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
+            <div class="row justify-content-center g-4">
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-light rounded h-100 p-4">
-                        <h6 class="mb-4">Basic Form</h6>
+                        <h6 class="mb-4">Update staff</h6>
                         <form action="staffControllerServlet" method="post">
                             <div class="mb-3">
                                 <label  class="form-label">ID</label>

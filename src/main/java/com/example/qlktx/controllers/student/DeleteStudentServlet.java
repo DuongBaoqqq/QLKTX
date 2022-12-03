@@ -20,10 +20,13 @@ public class DeleteStudentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        StudentBO.deleteStudent(id);
-        request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
-        rd.forward(request, response);
+        if (request.getSession().getAttribute("username") == null)
+            response.sendRedirect(request.getContextPath() + "/CheckLoginServlet");
+        else {
+            int id = Integer.parseInt(request.getParameter("id"));
+            StudentBO.deleteStudent(id);
+
+            response.sendRedirect(request.getContextPath() + "/ShowStudentServlet");
+        }
     }
 }

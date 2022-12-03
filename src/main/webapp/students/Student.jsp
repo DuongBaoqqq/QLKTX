@@ -39,6 +39,7 @@
 
     <!-- Template Stylesheet -->
     <link href="${pageContext.request.contextPath}/template/css/style.css" rel="stylesheet" type="text/css">
+    <% List<Student> students = (List<Student>)request.getAttribute("students"); %>
 </head>
 
 <body>
@@ -55,46 +56,46 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="/" class="navbar-brand mx-4 mb-3">
+            <a href="${pageContext.request.contextPath}" class="navbar-brand mx-4 mb-3">
                 <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>KTX</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
-                <div class="position-relative">
-                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                </div>
+
                 <div class="ms-3">
-                    <h6 class="mb-0">tieanh</h6>
+                    <h6 class="mb-0"><%=request.getSession().getAttribute("username")%></h6>
                     <span>Admin</span>
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="/" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Student</a>
+                <a href="${pageContext.request.contextPath}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
+                <div class="nav-item dropdown ">
+                    <a href="#" class="nav-link active   dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Student</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="ShowStudentServlet" class="dropdown-item">List Student</a>
-                        <a href="AddStudentServlet" class="dropdown-item">Add Student</a>
+                        <a href="${pageContext.request.contextPath}/ShowStudentServlet" class="dropdown-item">List Student</a>
+                        <a href="${pageContext.request.contextPath}/AddInforStudentServlet" class="dropdown-item">Add Student</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Room</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="rooms" class="dropdown-item">List room</a>
-                        <a href="rooms/add-room" class="dropdown-item">Add Room</a>
+                        <a href="${pageContext.request.contextPath}/rooms" class="dropdown-item">List room</a>
+                        <a href="${pageContext.request.contextPath}/rooms/add-room" class="dropdown-item">Add Room</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Staff</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="staffServlet" class="dropdown-item">List staff</a>
-                        <a href="staffControllerServlet" class="dropdown-item">Add staff</a>
+                        <a href="${pageContext.request.contextPath}/staffServlet" class="dropdown-item">List staff</a>
+                        <a href="${pageContext.request.contextPath}/staffControllerServlet?submitAdd=1" class="dropdown-item">Add staff</a>
                     </div>
                 </div>
-
-                <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
+                <div class="nav-item ">
+                    <a href="${pageContext.request.contextPath}/addAdminServlet" class="nav-link "><i class="fa fa-laptop me-2"></i>Add admin</a>
+                </div>
+                <a  href="${pageContext.request.contextPath}/LogoutServlet" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
 
             </div>
         </nav>
@@ -106,14 +107,12 @@
     <div class="content">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-3">
-            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-            </a>
+
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </a>
-            <form action="rooms" method="get" class="d-none d-md-flex ms-4">
-                <input class="form-control border-0" name="room_name" type="search" placeholder="Search">
+            <form action="${pageContext.request.contextPath}/SearchStudentServlet" method="get" class="d-none d-md-flex ms-4">
+                <input class="form-control border-0" name="name" type="search" placeholder="Search">
             </form>
         </nav>
         <!-- Navbar End -->
@@ -121,22 +120,56 @@
 
 
         <!-- Recent Sales Start -->
-        <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 ">
             <div class="bg-light text-center rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h6 class="mb-0">Rooms</h6>
+                    <h6 class="mb-0">List of Students</h6>
                 </div>
+
                 <div class="table-responsive">
                     <table class="table text-center align-middle table-bordered table-hover mb-0">
                         <thead>
                         <tr class="text-dark">
+                            <th scope="col">Room</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Building</th>
-                            <th scope="col">Number of Students</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Date of birth</th>
+                            <th scope="col">Sex</th>
+                            <th scope="col">CCCD</th>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">University</th>
+                            <th scope="col">Faculty</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Start date</th>
+                            <th scope="col">End date</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Update</th>
                         </tr>
                         </thead>
                         <tbody>
+
+                            <% for (Student student:students) {%>
+                            <tr>
+                                <td> <%= student.getRoom_name() %> </td>
+                                <td> <%= student.getName() %> </td>
+                                <td> <%= student.getDate() %> </td>
+                                <td>
+                                    <%if (student.getSex()==1) {%>
+                                    <%= "Nam" %>
+                                    <%} else {%>
+                                    <%= "Nu" %>
+                                    <%}%>
+                                </td>
+                                <td> <%= student.getCccd() %> </td>
+                                <td> <%= student.getPhone_number() %> </td>
+                                <td> <%= student.getUni() %> </td>
+                                <td> <%= student.getFaculty() %> </td>
+                                <td> <%= student.get_class() %> </td>
+                                <td> <%= student.getDate_from() %> </td>
+                                <td> <%= student.getDate_to() %> </td>
+                                <td> <a href="DeleteStudentServlet?id=<%=student.getId()%>"> Del </a> </td>
+                                <td> <a href="ChangeInforStudentServlet?id=<%=student.getId()%>&room_name=<%=student.getRoom_name()%>&name=<%=student.getName()%>&date=<%=student.getDate()%>&sex=<%=student.getSex()%>&cccd=<%=student.getCccd()%>&phone_number=<%=student.getPhone_number()%>&uni=<%=student.getUni()%>&faculty=<%=student.getFaculty()%>&class=<%=student.get_class()%>&date_from=<%=student.getDate_from()%>&date_to=<%=student.getDate_to()%>"> Change </a> </td>
+                            </tr>
+                            <%}%>
 
                         </tbody>
                     </table>

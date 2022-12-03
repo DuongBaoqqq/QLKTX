@@ -16,8 +16,12 @@ public class ShowStudentViaRoomServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setAttribute("students", StudentBO.getStudentsByRoom(request.getParameter("room_name")));
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
-//        rd.forward(request, response);
+        if (request.getSession().getAttribute("username") == null)
+            response.sendRedirect(request.getContextPath() + "/CheckLoginServlet");
+        else {
+            request.setAttribute("students", StudentBO.getStudentsByRoom(request.getParameter("room_name")));
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
+            rd.forward(request, response);
+        }
     }
 }

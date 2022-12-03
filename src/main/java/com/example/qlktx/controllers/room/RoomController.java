@@ -16,15 +16,17 @@ import java.util.List;
 public class RoomController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String roomName = req.getParameter("room_name") == null ? "" : req.getParameter("room_name");
-        boolean isAvailable = req.getParameter("available") != null;
+        if(req.getSession().getAttribute("username")==null) resp.sendRedirect(req.getContextPath()+"/CheckLoginServlet");
+        else {
+            String roomName = req.getParameter("room_name") == null ? "" : req.getParameter("room_name");
+            boolean isAvailable = req.getParameter("available") != null;
 
-        List<Room> rooms = RoomBO.getRooms(roomName , isAvailable);
-        req.setAttribute("rooms" , rooms);
-        RequestDispatcher rd =
-                req.getRequestDispatcher("/rooms/rooms.jsp");
-        rd.forward(req , resp);
-
+            List<Room> rooms = RoomBO.getRooms(roomName, isAvailable);
+            req.setAttribute("rooms", rooms);
+            RequestDispatcher rd =
+                    req.getRequestDispatcher("/rooms/rooms.jsp");
+            rd.forward(req, resp);
+        }
 //        resp.sendRedirect("rooms.jsp");
     }
 

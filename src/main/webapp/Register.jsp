@@ -13,11 +13,11 @@
       <table>
         <tr>
           <th> USERNAME: </th>
-          <td> <input type="text" name="user"> </td>
+          <td> <input type="text" name="username"> </td>
         </tr>
         <tr>
           <th> PASSWORD: </th>
-          <td> <input type="text" name="pass"> </td>
+          <td> <input type="text" name="password"> </td>
         </tr>
         <tr>
           <td> <input type="submit" value="OK"> </td>

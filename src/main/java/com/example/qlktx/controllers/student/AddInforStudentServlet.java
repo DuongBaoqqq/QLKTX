@@ -19,8 +19,11 @@ public class AddInforStudentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("rooms_names", RoomBO.getRooms("" , false));
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/AddStudent.jsp");
-        rd.forward(request, response);
+        if(request.getSession().getAttribute("username")==null) response.sendRedirect(request.getContextPath()+"/CheckLoginServlet");
+        else {
+            request.setAttribute("rooms_names", RoomBO.getRooms("", false));
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/AddStudent.jsp");
+            rd.forward(request, response);
+        }
     }
 }

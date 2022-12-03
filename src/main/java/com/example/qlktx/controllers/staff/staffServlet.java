@@ -21,11 +21,14 @@ public class staffServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Staff> Staffs = new ArrayList<Staff>();
-        Staffs = StaffBO.getAllStaff();
-        request.setAttribute("staffs",Staffs);
-        String destination = "/staffs/staff.jsp";
-        RequestDispatcher rd = request.getServletContext().getRequestDispatcher(destination);
-        rd.forward(request,response);
+        if(request.getSession().getAttribute("username")==null) response.sendRedirect(request.getContextPath()+"/CheckLoginServlet");
+        else {
+            List<Staff> Staffs = new ArrayList<Staff>();
+            Staffs = StaffBO.getAllStaff();
+            request.setAttribute("staffs", Staffs);
+            String destination = "/staffs/staff.jsp";
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher(destination);
+            rd.forward(request, response);
+        }
     }
 }

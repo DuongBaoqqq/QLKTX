@@ -28,9 +28,11 @@ public class ShowStudentServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
-        rd.forward(request, response);
-
+        if(request.getSession().getAttribute("username")==null) response.sendRedirect(request.getContextPath()+"/CheckLoginServlet");
+        else {
+            request.setAttribute("students", StudentBO.getStudent());
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
+            rd.forward(request, response);
+        }
     }
 }

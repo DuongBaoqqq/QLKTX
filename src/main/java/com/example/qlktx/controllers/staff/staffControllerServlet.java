@@ -14,10 +14,7 @@ import java.util.List;
 public class staffControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("Search")!=null){
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/staffs/searchStaff.jsp");
-            rd.forward(request,response);
-        }
+        if(request.getSession().getAttribute("username")==null) response.sendRedirect(request.getContextPath()+"/CheckLoginServlet");
         else if(request.getParameter("submitAdd")!=null){
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/staffs/addStaff.jsp");
             rd.forward(request,response);
@@ -37,6 +34,8 @@ public class staffControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("username")==null) response.sendRedirect(request.getContextPath()+"/CheckLoginServlet");
+        else
         if(request.getParameter("addStaff")!=null){
             Staff staff = new Staff(
                     request.getParameter("name"),

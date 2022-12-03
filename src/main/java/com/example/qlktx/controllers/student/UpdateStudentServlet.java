@@ -23,21 +23,26 @@ public class UpdateStudentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id_std"));
-        int id_room = Integer.parseInt(request.getParameter("roomSelect"));
-        String name = request.getParameter("name");
-        String date = request.getParameter("date");
-        int sex = Integer.parseInt(request.getParameter("sex"));
-        String cccd = request.getParameter("cccd");
-        String phone_number = request.getParameter("phone_number");
-        String uni = request.getParameter("uni");
-        String faculty = request.getParameter("faculty");
-        String _class = request.getParameter("class");
-        String date_from = request.getParameter("date_from");
-        String date_to = request.getParameter("date_to");
-        StudentBO.updateStudent(id, id_room, name, date, sex, cccd, phone_number, uni, faculty, _class, date_from, date_to);
-        request.setAttribute("students", StudentBO.getStudent());
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
-        rd.forward(request, response);
+        if (request.getSession().getAttribute("username") == null)
+            response.sendRedirect(request.getContextPath() + "/CheckLoginServlet");
+        else {
+            int id = Integer.parseInt(request.getParameter("id_std"));
+            int id_room = Integer.parseInt(request.getParameter("roomSelect"));
+            String name = request.getParameter("name");
+            String date = request.getParameter("date");
+            int sex = Integer.parseInt(request.getParameter("sex"));
+            String cccd = request.getParameter("cccd");
+            String phone_number = request.getParameter("phone_number");
+            String uni = request.getParameter("uni");
+            String faculty = request.getParameter("faculty");
+            String _class = request.getParameter("class");
+            String date_from = request.getParameter("date_from");
+            String date_to = request.getParameter("date_to");
+            StudentBO.updateStudent(id, id_room, name, date, sex, cccd, phone_number, uni, faculty, _class, date_from, date_to);
+//        request.setAttribute("students", StudentBO.getStudent());
+//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/students/Student.jsp");
+//        rd.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/ShowStudentServlet");
+        }
     }
 }

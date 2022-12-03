@@ -18,7 +18,7 @@ public class CheckLoginServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         } else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login/Login.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
             rd.forward(request, response);
         }
     }

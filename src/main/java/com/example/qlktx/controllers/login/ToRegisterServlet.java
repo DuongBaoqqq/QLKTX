@@ -14,7 +14,7 @@ public class ToRegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/login/Register.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Register.jsp");
         rd.forward(request, response);
     }
 }

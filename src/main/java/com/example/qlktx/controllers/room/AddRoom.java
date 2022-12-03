@@ -18,13 +18,16 @@ public class AddRoom extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int building_id = Integer.parseInt(req.getParameter("building_id"));
-        String name = req.getParameter("name");
-        int quantity = Integer.parseInt(req.getParameter("quantity"));
-        System.out.println("hello");
-        RoomBO.addNewRoom(building_id, name , quantity);
+        if (req.getSession().getAttribute("username") == null)
+            resp.sendRedirect(req.getContextPath() + "/CheckLoginServlet");
+        else {
+            int building_id = Integer.parseInt(req.getParameter("building_id"));
+            String name = req.getParameter("name");
+            int quantity = Integer.parseInt(req.getParameter("quantity"));
+            System.out.println("hello");
+            RoomBO.addNewRoom(building_id, name, quantity);
 
-        resp.sendRedirect(req.getContextPath()+"/rooms");
+            resp.sendRedirect(req.getContextPath() + "/rooms");
+        }
     }
-
 }

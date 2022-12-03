@@ -49,7 +49,7 @@
   <!-- Sidebar Start -->
   <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
-      <a href="/" class="navbar-brand mx-4 mb-3">
+      <a href="${pageContext.request.contextPath}" class="navbar-brand mx-4 mb-3">
         <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>KTX</h3>
       </a>
       <div class="d-flex align-items-center ms-4 mb-4">
@@ -60,36 +60,36 @@
         </div>
       </div>
       <div class="navbar-nav w-100">
-        <a href="/" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a href="${pageContext.request.contextPath}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
         <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Student</a>
           <div class="dropdown-menu bg-transparent border-0">
-            <a href="ShowStudentServlet" class="dropdown-item">List Student</a>
-            <a href="AddStudentServlet" class="dropdown-item">Add Student</a>
+            <a href="${pageContext.request.contextPath}/ShowStudentServlet" class="dropdown-item">List Student</a>
+            <a href="${pageContext.request.contextPath}/AddInforStudentServlet" class="dropdown-item">Add Student</a>
           </div>
         </div>
 
         <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Room</a>
           <div class="dropdown-menu bg-transparent border-0">
-            <a href="rooms" class="dropdown-item">List room</a>
-            <a href="rooms/add-room" class="dropdown-item">Add Room</a>
+            <a href="${pageContext.request.contextPath}/rooms" class="dropdown-item">List room</a>
+            <a href="${pageContext.request.contextPath}/rooms/add-room" class="dropdown-item">Add Room</a>
           </div>
         </div>
 
         <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Staff</a>
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Staff</a>
           <div class="dropdown-menu bg-transparent border-0">
-            <a href="staffServlet" class="dropdown-item">List staff</a>
-            <a href="staffControllerServlet?submitAdd=1" class="dropdown-item">Add staff</a>
+            <a href="${pageContext.request.contextPath}/staffServlet" class="dropdown-item">List staff</a>
+            <a href="${pageContext.request.contextPath}/staffControllerServlet?submitAdd=1" class="dropdown-item">Add staff</a>
           </div>
         </div>
 
-        <div class="nav-item ">
-          <a href="${pageContext.request.contextPath}/addAdminServlet" class="nav-link "><i class="fa fa-laptop me-2"></i>Add admin</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Add admin</a>
         </div>
 
-        <a href="${pageContext.request.contextPath}/LogoutServlet" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
+        <a  href="${pageContext.request.contextPath}/LogoutServlet" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Logout</a>
 
       </div>
     </nav>
@@ -107,61 +107,34 @@
       <a href="#" class="sidebar-toggler flex-shrink-0">
         <i class="fa fa-bars"></i>
       </a>
-      <form class="d-none d-md-flex ms-4" action="staffControllerServlet" method="post">
-        <input class="form-control border-0" type="search" placeholder="Search" name="searchStaff">
+      <form class="d-none d-md-flex ms-4">
+        <input class="form-control border-0" type="search" placeholder="Search">
       </form>
     </nav>
     <!-- Navbar End -->
-    <form action="staffControllerServlet" method="post">
-      <div class="container-fluid pt-4 px-4">
-        <div class="bg-light text-center rounded p-4">
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Staff</h6>
-          </div>
-          <div class="table-responsive">
-            <table class="table text-center align-middle table-bordered table-hover mb-0">
-              <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Date</th>
-                <th scope="col">Role</th>
-                <th scope="col">Update</th>
-                <th scope="col">Delete</th>
-              </tr>
-              </thead>
-              <tbody>
-                <%
-                  List<Staff> staffs = (List<Staff>) request.getAttribute("staffs");
-                  for(Staff staff: staffs){
-                %>
-                <tr>
-                <td><%= staff.getId() %></td>
-                <td><%= staff.getName() %></td>
-                <td><%= staff.isSex()? "Male" : "Female" %></td>
-                <td><%= staff.getPhonenumber() %></td>
-                <td><%= staff.getDate() %></td>
-                <td><%= staff.getRole() %></td>
-                <td><a href="staffControllerServlet?id=<%= staff.getId() %>">Update</a></td>
-                <td><input type="checkbox" name="del" value="<%= staff.getId() %>" id=""></td>
-                </tr>
-                <%}%>
-                </tbody>
-            </table>
-          </div>
+    <div class="container-fluid">
+      <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+          <form method="post" action="addAdminServlet" class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <a href="/index.jsp" class="">
+                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>KTX</h3>
+              </a>
+              <h3>Add admin</h3>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="username" type="text" class="form-control" id="floatingInput" placeholder="Username">
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-4">
+              <input name="password" type="text" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Add admin</button>
+          </form>
         </div>
       </div>
-      <div class="d-flex gap-4 mt-4">
-      <button type="submit" class="btn btn-sm btn-primary px-5" value="Delete" name="submitDel">Delete</button>
-      <button type="button" class="btn btn-sm btn-primary px-5" onclick="handleClick()">Select all </button>
-      </div>
-    </form>
-
-
-
-  </div>
+    </div>
   <!-- Content End -->
 
 
@@ -182,22 +155,7 @@
 
 <!-- Template Javascript -->
 <script src="template/js/main.js"></script>
-<script>
-  checkbox = document.getElementsByName("del")
-  let check = false;
-  function handleClick(){
-    check = !check;
-    if(check==true){
-      for(let i=0;i<checkbox.length;i++){
-        checkbox[i].checked=true;
-      }
-    } else {
-      for(let i=0;i<checkbox.length;i++){
-        checkbox[i].checked=false;
-      }
-    }
-  }
-</script>
+
 </body>
 
 </html>
