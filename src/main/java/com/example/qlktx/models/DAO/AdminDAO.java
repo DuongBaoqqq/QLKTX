@@ -11,15 +11,7 @@ public class AdminDAO {
     public static Admin getAdmin(String username, String password)
     {
         try {
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+          Statement stmt = ConnectDB.connectionDB();
 
             String sql = "select * from admin";
 
@@ -54,15 +46,7 @@ public class AdminDAO {
     public static void insertAdmin(String username, String password)
     {
         try {
-            String driverName = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driverName).newInstance();
-            String url = "jdbc:mysql://127.0.0.1:3306/ql_ktx";
-            String u = "root";
-            String p = "";
-
-            Connection con = DriverManager.getConnection(url, u, p);
-
-            Statement stmt = con.createStatement();
+            Statement stmt = ConnectDB.connectionDB();
 
             String sql = "insert into admin (username, password) values('"+username.trim()+"', '"+password.trim()+"')";
 

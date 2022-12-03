@@ -1,4 +1,4 @@
-package com.example.qlktx.controllers.student;
+package com.example.qlktx.controllers.login;
 
 import com.example.qlktx.models.BO.AdminBO;
 import com.example.qlktx.models.BO.AdminBO;
@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<div> You are having new Account now ! </div>");
-        out.println("<div> <a href=\"Login.jsp\"> Back to Login </a> </div>");
+        out.println("<div> <a href=\"CheckLoginServlet\"> Back to Login </a> </div>");
         out.println("</body></html>");
     }
 }
